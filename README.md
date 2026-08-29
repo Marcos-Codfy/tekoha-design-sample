@@ -6,8 +6,8 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.41-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.11-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-![Componentes](https://img.shields.io/badge/componentes-2-B5451B)
-![Testes](https://img.shields.io/badge/testes-7%20passando-2E7D32)
+![Componentes](https://img.shields.io/badge/componentes-3-B5451B)
+![Testes](https://img.shields.io/badge/testes-10%20passando-2E7D32)
 ![Análise estática](https://img.shields.io/badge/flutter%20analyze-sem%20issues-2E7D32)
 ![Dependências](https://img.shields.io/badge/dependências%20externas-0-6B6B6B)
 
@@ -36,9 +36,10 @@ Um catálogo assim resolve três problemas de uma vez:
 
 | Tela | O que mostra |
 |---|---|
-| **Sample** (índice) | Os cartões dos componentes. O terceiro aparece em estado bloqueado, com a etiqueta *Próxima etapa* — visível, nunca escondido |
+| **Sample** (índice) | As linhas dos componentes, construídas com o próprio `TekohaListItem` — o catálogo consome o que documenta |
 | **Action Button** | Variantes, tamanhos, estados e largura, cada bloco com a chamada que o gera |
 | **Tab Bar** | A barra viva no rodapé trocando o conteúdo do corpo, mais os dois estados de uma aba lado a lado |
+| **List Items** | Os quatro formatos de linha nos contextos reais: navegação, lista principal, item indisponível, conteúdo longo e tabela de dados |
 
 ## Estrutura
 
@@ -51,11 +52,14 @@ lib/
 ├── components/
 │   └── common/
 │       ├── action_button.dart             # ActionButton
-│       └── tab_bar.dart                   # TekohaTabBar
+│       ├── tab_bar.dart                   # TekohaTabBar
+│       └── list_items.dart                # TekohaListItem
 └── pages/
     ├── sample_screen.dart                 # índice
+    ├── sample_section.dart                # moldura das telas de demonstração
     ├── sample_action_button_screen.dart
-    └── sample_tab_bar_screen.dart
+    ├── sample_tab_bar_screen.dart
+    └── sample_list_items_screen.dart
 
 test/
 └── components/                            # um arquivo por componente
@@ -129,6 +133,45 @@ const TekohaTabItem(
 )
 ```
 
+### `TekohaListItem`
+
+Um widget só cobre os quatro formatos de linha que o aplicativo usa em telas
+diferentes — cartão de módulo, cartão de idioma, item bloqueado e linha de
+estatística. O que muda entre eles é a variante; a estrutura é sempre a mesma.
+
+```dart
+TekohaListItem(
+  leading: const TekohaListItemBadge.number(1),
+  title: 'Cumprimentos e Interações',
+  subtitle: 'O que você diz nos primeiros 30 segundos de uma conversa',
+  trailing: const Icon(Icons.chevron_right),
+  variant: TekohaListItemVariant.filled,
+  onTap: () {},
+)
+```
+
+| Parâmetro | Tipo | Padrão | Papel |
+|---|---|---|---|
+| `title` | `String` | — | Título da linha |
+| `leading` | `Widget?` | `null` | Elemento à esquerda: badge, avatar ou ícone |
+| `subtitle` | `String?` | `null` | Texto de apoio |
+| `subtitleMaxLines` | `int?` | `2` | `null` deixa o subtítulo correr inteiro |
+| `trailing` | `Widget?` | `null` | Elemento à direita: chevron, valor, cadeado |
+| `onTap` | `VoidCallback?` | `null` | `null` remove o efeito de toque |
+| `variant` | `TekohaListItemVariant` | `outlined` | `outlined` · `filled` · `muted` · `plain` |
+
+O `trailing` **herda a cor da variante**: quem chama passa um `Icon` ou `Text` sem
+cor e o contraste sai correto sobre qualquer fundo. É o detalhe que separa este
+componente de um `ListTile` genérico.
+
+Para o círculo à esquerda, `TekohaListItemBadge` oferece as duas formas que aparecem
+nas mesmas listas, com o mesmo diâmetro para os títulos alinharem entre si:
+
+```dart
+const TekohaListItemBadge.number(1)
+const TekohaListItemBadge.icon(Icons.check, background: AppColors.correct)
+```
+
 ## Tokens de cor
 
 Nenhum widget deste projeto declara `Color(0x...)` direto. Trocar a identidade visual
@@ -144,6 +187,7 @@ Nenhum widget deste projeto declara `Color(0x...)` direto. Trocar a identidade v
 | `border` | `#E0E0E0` | Molduras |
 | `correct` | `#2E7D32` | Acerto |
 | `disabled` | `#D4886A` | Urucum dessaturado |
+| `disabledSurface` | `#F5F5F5` | Fundo de item indisponível em lista |
 | `jenipapo` | `#1B2845` | Azul-noite |
 | `caulim` | `#F5EBD8` | Branco-osso terroso |
 | `argila` | `#A0522D` | Marrom argila |
@@ -181,7 +225,7 @@ flutter analyze
 flutter test
 ```
 
-Análise estática sem issues e sete testes de widget passando — um arquivo por
+Análise estática sem issues e dez testes de widget passando — um arquivo por
 componente, cobrindo o comportamento essencial: renderiza, o callback dispara, os
 estados que bloqueiam a ação bloqueiam mesmo, e o estado ativo se distingue do
 inativo. A suíte é deliberadamente enxuta: o artefato aqui é a vitrine visual, não a

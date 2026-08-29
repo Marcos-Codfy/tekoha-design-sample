@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 
 import 'pages/sample_action_button_screen.dart';
+import 'pages/sample_list_items_screen.dart';
 import 'pages/sample_screen.dart';
 import 'pages/sample_tab_bar_screen.dart';
 import 'theme/app_theme.dart';
@@ -32,6 +33,7 @@ class TekohaDesignSampleApp extends StatelessWidget {
         SampleActionButtonScreen.routeName: (_) =>
             const SampleActionButtonScreen(),
         SampleTabBarScreen.routeName: (_) => const SampleTabBarScreen(),
+        SampleListItemsScreen.routeName: (_) => const SampleListItemsScreen(),
       },
     );
   }
