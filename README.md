@@ -4,8 +4,12 @@
 
 **Catálogo vivo dos componentes reutilizáveis do aplicativo Tekohá.**
 
-![Flutter](https://img.shields.io/badge/Flutter-3.41-02569B?logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-3.11-0175C2?logo=dart&logoColor=white)
+[![Flutter](https://img.shields.io/badge/Flutter-3.41-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.11-0175C2?logo=dart&logoColor=white)](https://dart.dev)
+![Componentes](https://img.shields.io/badge/componentes-2-B5451B)
+![Testes](https://img.shields.io/badge/testes-7%20passando-2E7D32)
+![Análise estática](https://img.shields.io/badge/flutter%20analyze-sem%20issues-2E7D32)
+![Dependências](https://img.shields.io/badge/dependências%20externas-0-6B6B6B)
 
 </div>
 
@@ -14,26 +18,27 @@
 ## O que é
 
 Este projeto não é um aplicativo de produto: é a **vitrine do design system** do
-[Tekohá](#relação-com-o-aplicativo-tekohá). Uma tela-índice lista os componentes e
-cada uma leva a uma tela de demonstração, onde o componente aparece em todas as suas
-variantes, tamanhos e estados, com a chamada de código que produz cada exemplo.
+[Tekohá](#relação-com-o-aplicativo-tekohá). Uma tela-índice lista os componentes, e
+cada uma leva a uma tela de demonstração onde o componente aparece em todas as suas
+variantes, tamanhos e estados — cada exemplo acompanhado da chamada de código que o
+produz.
 
-Servir de catálogo resolve três problemas de uma vez:
+Um catálogo assim resolve três problemas de uma vez:
 
 - **Consistência** — quem for construir uma tela nova vê o que já existe antes de
   reinventar um botão (heurística de Nielsen nº 4, consistência e padrões).
 - **Revisão de design** — dá para inspecionar todos os estados de um componente
-  juntos, o que não acontece quando eles estão espalhados por dez telas.
-- **Documentação que não envelhece** — o catálogo é código que roda; se o componente
+  lado a lado, o que não acontece quando eles estão espalhados por dez telas.
+- **Documentação que não envelhece** — o catálogo é código que roda. Se o componente
   mudar, a demonstração muda junto.
 
-## Telas
+## As telas
 
 | Tela | O que mostra |
 |---|---|
-| **Sample** (índice) | Cartões dos componentes; o terceiro fica em estado bloqueado, sinalizando a próxima etapa |
-| **Action Button** | Variantes, tamanhos, estados e largura — cada bloco com a chamada que o gera |
-| **Tab Bar** | A barra viva no rodapé trocando o conteúdo, mais os estados de uma aba lado a lado |
+| **Sample** (índice) | Os cartões dos componentes. O terceiro aparece em estado bloqueado, com a etiqueta *Próxima etapa* — visível, nunca escondido |
+| **Action Button** | Variantes, tamanhos, estados e largura, cada bloco com a chamada que o gera |
+| **Tab Bar** | A barra viva no rodapé trocando o conteúdo do corpo, mais os dois estados de uma aba lado a lado |
 
 ## Estrutura
 
@@ -56,14 +61,15 @@ test/
 └── components/                            # um arquivo por componente
 ```
 
-Convenção: **código em inglês, comentários em português**. Cada componente abre com um
-cabeçalho dizendo o que é, como usar e qual regra de design ele carrega.
+**Convenção de idioma:** código e mensagens de commit em inglês; comentários, interface
+e documentação em português. Cada componente abre com um cabeçalho dizendo o que é,
+como usar e qual regra de design ele carrega.
 
 ## Componentes
 
 ### `ActionButton`
 
-Unifica numa API só os três botões que o aplicativo mantinha separados: primário,
+Unifica numa API só os três botões que o aplicativo mantinha separados — primário,
 secundário e o spinner de carregamento.
 
 ```dart
@@ -97,7 +103,7 @@ ActionButton.secondary(
 
 ### `TekohaTabBar`
 
-Barra de navegação de abas. É um componente **controlado**: não guarda o índice atual,
+Barra de navegação por abas. É um componente **controlado**: não guarda o índice atual,
 recebe `currentIndex` e devolve `onTap`. O estado mora em quem usa, o que mantém uma
 fonte única da verdade e torna a barra reaproveitável fora de um `Scaffold`.
 
@@ -151,7 +157,7 @@ naturais da Amazônia** — urucum, jenipapo, caulim, argila — e nunca de graf
 
 ## Como rodar
 
-Pré-requisitos: Flutter SDK 3.41 ou superior.
+Pré-requisito: Flutter SDK 3.41 ou superior.
 
 ```bash
 flutter pub get
@@ -175,10 +181,11 @@ flutter analyze
 flutter test
 ```
 
-A suíte é deliberadamente enxuta — um arquivo por componente, cobrindo só o
-comportamento essencial: renderiza, o callback dispara, os estados que bloqueiam a
-ação bloqueiam mesmo, e o estado ativo se distingue do inativo. O artefato aqui é a
-vitrine visual, não a suíte.
+Análise estática sem issues e sete testes de widget passando — um arquivo por
+componente, cobrindo o comportamento essencial: renderiza, o callback dispara, os
+estados que bloqueiam a ação bloqueiam mesmo, e o estado ativo se distingue do
+inativo. A suíte é deliberadamente enxuta: o artefato aqui é a vitrine visual, não a
+cobertura.
 
 ## Como adicionar um componente novo
 
@@ -194,27 +201,30 @@ vitrine visual, não a suíte.
 
 O **Tekohá** é um aplicativo de ensino gamificado de **Nheengatu**, a língua geral
 amazônica, desenvolvido como pesquisa de Iniciação Científica em Engenharia de
-Software (linha Direitos Humanos). Este design sample system extrai a linguagem visual
-daquele aplicativo — paleta, medidas, regras de hierarquia — e a apresenta isolada,
-componente a componente.
+Software, na linha de Direitos Humanos. Este design sample system extrai a linguagem
+visual daquele aplicativo — paleta, medidas, regras de hierarquia — e a apresenta
+isolada, componente a componente.
 
 As decisões de design não são arbitrárias: cada uma é rastreável à literatura revisada
-no registro científico da pesquisa. A regra de um botão primário por tela vem da Lei
-de Hick; a paleta de pigmentos naturais, de Elliot & Maier (2014) somada ao cuidado
-ético de Carneiro da Cunha (2009); a distinção da aba ativa por três sinais somados,
-de acessibilidade básica de cor.
+no registro científico da pesquisa. A regra de um botão primário por tela vem da Lei de
+Hick; a paleta de pigmentos naturais, de Elliot & Maier (2014) somada ao cuidado ético
+de Carneiro da Cunha (2009); a distinção da aba ativa por três sinais somados, de
+acessibilidade básica de cor.
 
-## Roadmap
+## Direitos autorais e uso
 
-- [x] `ActionButton` — variantes, tamanhos e estados
-- [x] `TekohaTabBar` — navegação de abas controlada
-- [ ] `ListItems` — linha de lista com título, subtítulo e elemento à direita
+© 2026 Marcos Vinicius Muniz Arruda. Todos os direitos reservados.
+
+Publicado para fins de avaliação acadêmica e portfólio. Não é concedida licença de
+reprodução ou uso comercial sem autorização expressa do autor.
 
 ## Autor
 
 **Marcos Vinicius Muniz Arruda** — desenvolvimento e design.
 
 Estudante de Engenharia de Software · Centro Universitário Católica do Tocantins.
+
+[github.com/Marcos-Codfy](https://github.com/Marcos-Codfy)
 
 ---
 
