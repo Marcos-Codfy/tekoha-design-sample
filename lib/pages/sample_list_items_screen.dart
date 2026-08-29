@@ -114,6 +114,26 @@ class SampleListItemsScreen extends StatelessWidget {
             ],
           ),
           const SampleSection(
+            title: 'Conteúdo longo',
+            note: 'O subtítulo corta em duas linhas por padrão. Passe '
+                'subtitleMaxLines: null para deixá-lo correr inteiro — é o '
+                'formato dos cards de conteúdo da aba Cultura.',
+            children: [
+              SampleSpec(
+                code: 'subtitleMaxLines: null',
+                child: TekohaListItem(
+                  title: 'Você Fala Mais Nheengatu Do Que Pensa',
+                  subtitle:
+                      'Mais de 10 mil palavras do português brasileiro vieram '
+                      'do Tupi antigo e suas línguas-filhas, como o Nheengatu. '
+                      'Capivara, jacaré, abacaxi, mandioca, pipoca, tatu, '
+                      'tucano, jabuti — todas indígenas.',
+                  subtitleMaxLines: null,
+                ),
+              ),
+            ],
+          ),
+          const SampleSection(
             title: 'Tabela de dados',
             note: 'Sem moldura, com o valor à direita. Combine com Divider '
                 'entre as linhas — a régua separa sem pesar como uma borda.',

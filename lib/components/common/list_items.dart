@@ -36,8 +36,8 @@ enum TekohaListItemVariant {
   /// mais de uma lista preenchida por tela derruba a hierarquia.
   filled,
 
-  /// Cartao em caulim, apagado. Sinaliza item indisponivel sem escondê-lo:
-  /// uma coleção incompleta e visivel motiva mais do que uma lista curta.
+  /// Cartao cinza, apagado. Sinaliza item indisponivel sem escondê-lo: uma
+  /// coleção incompleta e visivel motiva mais do que uma lista curta.
   muted,
 
   /// Linha sem moldura, para tabelas de dados. Combine com [Divider] entre
@@ -52,8 +52,13 @@ class TekohaListItem extends StatelessWidget {
   /// Titulo da linha. Obrigatorio — uma linha sem titulo nao e uma linha.
   final String title;
 
-  /// Texto de apoio, opcional. Limitado a duas linhas com reticencias.
+  /// Texto de apoio, opcional.
   final String? subtitle;
+
+  /// Quantas linhas o subtitulo pode ocupar antes de cortar com reticencias.
+  /// `null` remove o limite — e o que os cards de conteudo da aba Cultura
+  /// precisam, porque ali o subtitulo e um paragrafo inteiro.
+  final int? subtitleMaxLines;
 
   /// Elemento a direita: chevron, valor numerico, cadeado, etiqueta.
   final Widget? trailing;
@@ -68,6 +73,7 @@ class TekohaListItem extends StatelessWidget {
     required this.title,
     this.leading,
     this.subtitle,
+    this.subtitleMaxLines = 2,
     this.trailing,
     this.onTap,
     this.variant = TekohaListItemVariant.outlined,
@@ -89,7 +95,7 @@ class TekohaListItem extends StatelessWidget {
             accent: AppColors.textOnPrimary,
           ),
         TekohaListItemVariant.muted => const _ListItemStyle(
-            background: AppColors.caulim,
+            background: AppColors.disabledSurface,
             border: null,
             title: AppColors.textSecondary,
             subtitle: AppColors.textSecondary,
@@ -155,8 +161,10 @@ class TekohaListItem extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         subtitle!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        maxLines: subtitleMaxLines,
+                        overflow: subtitleMaxLines == null
+                            ? TextOverflow.clip
+                            : TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 14,
                           height: 1.4,

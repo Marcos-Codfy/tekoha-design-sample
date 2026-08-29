@@ -35,6 +35,11 @@ class AppColors {
   static const Color wrong = Color(0xFFB5451B); // urucum (visual unificado)
   static const Color disabled = Color(0xFFD4886A); // urucum dessaturado
 
+  /// Fundo neutro de item indisponivel em lista (o "Em breve" da aba
+  /// Cultura). Cinza, nao caulim: caulim carrega significado de conteudo
+  /// cultural e nao deve virar sinonimo de "desativado".
+  static const Color disabledSurface = Color(0xFFF5F5F5);
+
   // ── Paleta amazonica estendida ────────────────────────────────────
   // Cada cor com contraste WCAG AA validado sobre branco.
   static const Color jenipapo = Color(0xFF1B2845); // Azul-noite (fruta)
