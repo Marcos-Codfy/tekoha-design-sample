@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 import '../components/common/action_button.dart';
 import '../theme/app_colors.dart';
+import 'sample_section.dart';
 
 class SampleActionButtonScreen extends StatelessWidget {
   const SampleActionButtonScreen({super.key});
@@ -38,16 +39,16 @@ class SampleActionButtonScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
-          const _Intro(
+          const SampleIntro(
             'Botão de ação do Tekohá. Uma API única com variantes, no lugar '
             'de repetir ElevatedButton em cada tela.',
           ),
-          _Section(
+          SampleSection(
             title: 'Variantes',
             note: 'O peso visual define a hierarquia. Primário é a ação mais '
                 'importante do contexto; secundário são as alternativas.',
             children: [
-              _Spec(
+              SampleSpec(
                 code: 'ActionButton.primary(...)',
                 child: ActionButton.primary(
                   label: 'Praticar Nheengatu',
@@ -55,7 +56,7 @@ class SampleActionButtonScreen extends StatelessWidget {
                   onPressed: () => _showFeedback(context, 'Praticar Nheengatu'),
                 ),
               ),
-              _Spec(
+              SampleSpec(
                 code: 'ActionButton.secondary(...)',
                 child: ActionButton.secondary(
                   label: 'Explorar a cultura indígena',
@@ -66,19 +67,19 @@ class SampleActionButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          _Section(
+          SampleSection(
             title: 'Tamanhos',
             note: 'large em CTA de tela cheia, medium em blocos internos, '
                 'small dentro de cards e barras compactas.',
             children: [
-              _Spec(
+              SampleSpec(
                 code: 'size: ActionButtonSize.large — 54 px',
                 child: ActionButton.primary(
                   label: 'Próximo módulo',
                   onPressed: () => _showFeedback(context, 'Próximo módulo'),
                 ),
               ),
-              _Spec(
+              SampleSpec(
                 code: 'size: ActionButtonSize.medium — 48 px',
                 child: ActionButton.primary(
                   label: 'Próximo módulo',
@@ -86,7 +87,7 @@ class SampleActionButtonScreen extends StatelessWidget {
                   onPressed: () => _showFeedback(context, 'Próximo módulo'),
                 ),
               ),
-              _Spec(
+              SampleSpec(
                 code: 'size: ActionButtonSize.small — 40 px',
                 child: ActionButton.primary(
                   label: 'Próximo módulo',
@@ -96,20 +97,20 @@ class SampleActionButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          const _Section(
+          const SampleSection(
             title: 'Estados',
             note: 'Sem onPressed o botão desabilita sozinho. Com isLoading o '
                 'rótulo dá lugar ao spinner e o toque é bloqueado.',
             children: [
-              _Spec(
+              SampleSpec(
                 code: 'onPressed: null — desabilitado',
                 child: ActionButton.primary(label: 'Termine o módulo anterior'),
               ),
-              _Spec(
+              SampleSpec(
                 code: 'isLoading: true — primário',
                 child: ActionButton.primary(label: 'Entrar', isLoading: true),
               ),
-              _Spec(
+              SampleSpec(
                 code: 'isLoading: true — secundário',
                 child: ActionButton.secondary(
                   label: 'Sair da conta',
@@ -118,12 +119,12 @@ class SampleActionButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          _Section(
+          SampleSection(
             title: 'Largura',
             note: 'O padrão ocupa toda a linha. Use fullWidth: false quando o '
                 'botão dividir espaço com outro elemento.',
             children: [
-              _Spec(
+              SampleSpec(
                 code: 'fullWidth: false',
                 child: Row(
                   children: [
@@ -144,100 +145,6 @@ class SampleActionButtonScreen extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Paragrafo de abertura da tela de demonstracao.
-class _Intro extends StatelessWidget {
-  final String text;
-
-  const _Intro(this.text);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 15,
-          color: AppColors.textSecondary,
-          height: 1.5,
-        ),
-      ),
-    );
-  }
-}
-
-/// Bloco tematico com titulo, explicacao e uma lista de exemplos.
-class _Section extends StatelessWidget {
-  final String title;
-  final String note;
-  final List<Widget> children;
-
-  const _Section({
-    required this.title,
-    required this.note,
-    required this.children,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 32),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          note,
-          style: const TextStyle(
-            fontSize: 13,
-            color: AppColors.textSecondary,
-            height: 1.45,
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...children,
-      ],
-    );
-  }
-}
-
-/// Um exemplo do catalogo: o widget em cima, a chamada que o produz embaixo.
-class _Spec extends StatelessWidget {
-  final String code;
-  final Widget child;
-
-  const _Spec({required this.code, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          child,
-          const SizedBox(height: 6),
-          Text(
-            code,
-            style: const TextStyle(
-              fontSize: 12,
-              fontFamily: 'monospace',
-              color: AppColors.argila,
-            ),
           ),
         ],
       ),
