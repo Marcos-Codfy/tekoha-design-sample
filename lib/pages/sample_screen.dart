@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../components/common/list_items.dart';
 import '../theme/app_colors.dart';
 import 'sample_action_button_screen.dart';
+import 'sample_list_items_screen.dart';
 import 'sample_tab_bar_screen.dart';
 
 class SampleScreen extends StatelessWidget {
@@ -83,16 +84,15 @@ class SampleScreen extends StatelessWidget {
                 Navigator.of(context).pushNamed(SampleTabBarScreen.routeName),
           ),
           const SizedBox(height: 12),
-          const TekohaListItem(
-            leading: TekohaListItemBadge.number(
-              3,
-              foreground: AppColors.textSecondary,
-            ),
+          TekohaListItem(
+            leading: const TekohaListItemBadge.number(3),
             title: 'List Items',
-            subtitle: 'Linha de lista com título, subtítulo e elemento à '
-                'direita',
-            trailing: Text('Próxima etapa'),
-            variant: TekohaListItemVariant.muted,
+            subtitle: 'Quatro formatos de linha, com elemento à esquerda, '
+                'título, subtítulo e elemento à direita',
+            trailing: const Icon(Icons.chevron_right),
+            variant: TekohaListItemVariant.filled,
+            onTap: () =>
+                Navigator.of(context).pushNamed(SampleListItemsScreen.routeName),
           ),
         ],
       ),
