@@ -6,8 +6,8 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.41-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.11-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-![Componentes](https://img.shields.io/badge/componentes-3-B5451B)
-![Testes](https://img.shields.io/badge/testes-10%20passando-2E7D32)
+![Componentes](https://img.shields.io/badge/componentes-11-B5451B)
+![Testes](https://img.shields.io/badge/testes-22%20passando-2E7D32)
 ![Análise estática](https://img.shields.io/badge/flutter%20analyze-sem%20issues-2E7D32)
 ![Dependências](https://img.shields.io/badge/dependências%20externas-0-6B6B6B)
 
@@ -36,10 +36,14 @@ Um catálogo assim resolve três problemas de uma vez:
 
 | Tela | O que mostra |
 |---|---|
-| **Sample** (índice) | As linhas dos componentes, construídas com o próprio `TekohaListItem` — o catálogo consome o que documenta |
-| **Action Button** | Variantes, tamanhos, estados e largura, cada bloco com a chamada que o gera |
-| **Tab Bar** | A barra viva no rodapé trocando o conteúdo do corpo, mais os dois estados de uma aba lado a lado |
-| **List Items** | Os quatro formatos de linha nos contextos reais: navegação, lista principal, item indisponível, conteúdo longo e tabela de dados |
+| **Sample** (índice) | O catálogo agrupado por família, construído com o próprio `TekohaListItem` e o próprio `TekohaSectionLabel` |
+| **Action Button** | Variantes, tamanhos, estados e largura |
+| **Tab Bar** | A barra viva no rodapé trocando o conteúdo, mais os dois estados de uma aba |
+| **Trail Node** | A trilha completa em sequência e os três estados isolados |
+| **List Items** | Os quatro formatos de linha nos contextos reais do aplicativo |
+| **Chips e Pills** | Filtro selecionável ao lado do rótulo de estado |
+| **Exercício** | Barra de progresso, botão de áudio, alternativas e feedback — e um exercício funcional montado com eles |
+| **Estados e Textos** | Carregando, sem conteúdo, e os três textos com papel |
 
 ## Estrutura
 
@@ -53,13 +57,25 @@ lib/
 │   └── common/
 │       ├── action_button.dart             # ActionButton
 │       ├── tab_bar.dart                   # TekohaTabBar
-│       └── list_items.dart                # TekohaListItem
+│       ├── list_items.dart                # TekohaListItem, TekohaListItemBadge
+│       ├── trail_node.dart                # TekohaTrailNode
+│       ├── chip.dart                      # TekohaChip, TekohaPill
+│       ├── banner.dart                    # TekohaBanner, TekohaNoteCard
+│       ├── option_button.dart             # TekohaOptionButton
+│       ├── play_button.dart               # TekohaPlayButton
+│       ├── progress_bar.dart              # TekohaProgressBar
+│       ├── feedback_state.dart            # TekohaLoader, TekohaEmptyState
+│       └── texts.dart                     # TekohaSectionLabel, PurposeText, EncouragementText
 └── pages/
     ├── sample_screen.dart                 # índice
     ├── sample_section.dart                # moldura das telas de demonstração
     ├── sample_action_button_screen.dart
     ├── sample_tab_bar_screen.dart
-    └── sample_list_items_screen.dart
+    ├── sample_list_items_screen.dart
+    ├── sample_chips_screen.dart
+    ├── sample_lesson_screen.dart
+    ├── sample_trail_screen.dart
+    └── sample_states_screen.dart
 
 test/
 └── components/                            # um arquivo por componente
@@ -172,6 +188,139 @@ const TekohaListItemBadge.number(1)
 const TekohaListItemBadge.icon(Icons.check, background: AppColors.correct)
 ```
 
+### `TekohaTrailNode`
+
+Nó de uma trilha vertical. É um item de lista com um círculo de status e **a linha
+que liga um nó ao próximo** — a linha é o motivo do componente existir, porque ela
+transforma quatro cartões soltos num caminho, e caminho comunica ordem e destino.
+
+```dart
+TekohaTrailNode(
+  title: 'Os pequenos',
+  subtitle: '8 exercícios',
+  number: 3,
+  state: TekohaTrailNodeState.current,   // done · current · locked
+  isLast: false,
+  onTap: () {},
+)
+```
+
+O trecho já percorrido pinta o conector de verde e o que falta, de cinza: o próprio
+conector vira barra de progresso. O nó travado ignora `onTap` — a trava é do
+componente, não de quem o usa.
+
+### `TekohaChip` e `TekohaPill`
+
+Parecidas por fora, opostas por dentro. O **chip é controle** — o usuário toca para
+filtrar, e tem estado selecionado. A **pill é rótulo** — comunica um estado do
+sistema e não se toca. Fundir as duas obrigaria a passar `selectable: false` toda vez
+que a intenção fosse apenas rotular, e um dia alguém passaria `onTap` num rótulo.
+
+```dart
+TekohaChip(label: 'Curiosidades', selected: true, onTap: () {})
+const TekohaPill(label: 'Palavra nova', icon: Icons.auto_awesome,
+                 tone: TekohaPillTone.neutral)
+```
+
+O chip selecionado ganha um visto **além** da cor. A pill monta o fundo com o próprio
+tom a 10% de opacidade, então um tom novo não exige escolher um segundo hex.
+
+### `TekohaBanner` e `TekohaNoteCard`
+
+O banner comunica o **resultado** de uma ação — acertou, errou, falhou ao entrar. O
+note card traz conteúdo **colateral** — a curiosidade cultural, a nota de pronúncia.
+A distinção importa porque a cor comunica: um card cultural em verde diria "você
+acertou", que é falso.
+
+```dart
+TekohaBanner(
+  message: 'Boa! +10 XP',
+  detail: 'Pronúncia: Ku-ru-mi',
+  tone: TekohaBannerTone.success,        // success · error · info
+  action: ActionButton.primary(label: 'Continuar', onPressed: () {}),
+)
+```
+
+O tom de erro usa **coração, não um X**. O aplicativo não pune quem erra, e o ícone
+precisa dizer isso antes do texto.
+
+### `TekohaOptionButton`
+
+Alternativa de exercício. Não é um `ActionButton`: um botão de ação executa, uma
+alternativa é escolhida e depois avaliada — por isso tem `correct` e `wrong`, que
+nenhum botão de ação tem.
+
+```dart
+TekohaOptionButton(
+  label: 'Menino',
+  state: TekohaOptionState.correct,      // idle · correct · wrong
+  onTap: () {},
+)
+```
+
+A borda engrossa no estado respondido, então o resultado se percebe pela espessura
+antes da cor. O estado errado usa seta de repetição, não um X: comunica "tente de
+novo", não "você falhou". A regra do projeto é no máximo quatro alternativas por
+exercício — o tempo de decisão cresce com o número de opções.
+
+### `TekohaPlayButton`
+
+O único elemento grande do aplicativo que **não é urucum**. A cor rio marca "som"
+como família própria: num aplicativo cuja pedagogia parte do ouvido, o botão de ouvir
+precisa ter identidade.
+
+```dart
+TekohaPlayButton(isPlaying: player.isPlaying, size: 88, onTap: player.replay)
+```
+
+`isPlaying` deve refletir o estado **real** do reprodutor, não o toque — senão o
+pulso mente sobre o que está acontecendo.
+
+### `TekohaProgressBar`
+
+Duas decisões de produto estão embutidas aqui, e é por isso que o componente existe
+em vez de um `LinearProgressIndicator` cru:
+
+```dart
+TekohaProgressBar(
+  value: 6 / 8,
+  label: TekohaProgressBar.stepLabel(current: 6, total: 8),
+)
+```
+
+**Partida doada** — a barra nunca começa vazia: mesmo no primeiro passo mostra ~5%.
+Progresso artificial no início aumenta a taxa de conclusão, e uma barra em zero
+parece um caminho que ainda nem começou. Só a representação muda; `value` continua
+sendo o progresso real.
+
+**Recuo da meta** — perto do fim o rótulo troca de "Exercício 6 de 8" para
+"Faltam 2 — você está quase lá!". Contar o que falta torna a meta mais visível do que
+contar o que passou.
+
+### `TekohaLoader` e `TekohaEmptyState`
+
+Estados de ausência são a parte que mais se improvisa num aplicativo, porque ninguém
+os projeta: aparecem quando algo deu errado. Centralizá-los garante que "sem conexão"
+tenha a mesma cara em todas as abas.
+
+```dart
+const TekohaLoader()
+
+TekohaEmptyState(
+  message: 'Nenhum módulo disponível ainda.',
+  hint: 'Verifique sua conexão e tente de novo.',
+  icon: Icons.wifi_off_rounded,
+  onRetry: carregar,                     // opcional
+)
+```
+
+### `TekohaSectionLabel`, `TekohaPurposeText`, `TekohaEncouragementText`
+
+Um `Text` comum resolveria os três. Eles existem como componentes porque cada um tem
+um **papel fixo** na interface, e o papel precisa ficar visível no código: quem lê
+`TekohaPurposeText(...)` sabe que aquela frase existe para dar sentido à ação, e não
+vai trocá-la por uma dica de uso.
+
 ## Tokens de cor
 
 Nenhum widget deste projeto declara `Color(0x...)` direto. Trocar a identidade visual
@@ -225,7 +374,7 @@ flutter analyze
 flutter test
 ```
 
-Análise estática sem issues e dez testes de widget passando — um arquivo por
+Análise estática sem issues e vinte e dois testes de widget passando — um arquivo por
 componente, cobrindo o comportamento essencial: renderiza, o callback dispara, os
 estados que bloqueiam a ação bloqueiam mesmo, e o estado ativo se distingue do
 inativo. A suíte é deliberadamente enxuta: o artefato aqui é a vitrine visual, não a

@@ -1,27 +1,95 @@
 // lib/pages/sample_screen.dart
 //
-// Tela inicial do design system: o indice dos componentes. Cada linha leva a
-// tela de demonstracao do seu componente.
+// Tela inicial do design system: o indice dos componentes.
 //
-// As linhas do indice sao o proprio TekohaListItem. O catalogo consome o que
-// documenta — se o componente quebrar, a primeira tela do aplicativo quebra
-// junto, e ninguem descobre tarde.
+// As linhas do indice sao o proprio TekohaListItem, e os rotulos de grupo sao
+// o proprio TekohaSectionLabel. O catalogo consome o que documenta — se um
+// componente quebrar, a primeira tela do aplicativo quebra junto, e ninguem
+// descobre tarde.
+//
+// O agrupamento por familia (acoes, navegacao, conteudo, exercicio, estados)
+// nao veio do rascunho original, que previa uma tela por componente. Com onze
+// componentes, uma lista corrida obrigaria a rolar procurando pelo nome; o
+// agrupamento deixa achar pelo PAPEL, que e como se procura um componente na
+// pratica.
 
 import 'package:flutter/material.dart';
 
 import '../components/common/list_items.dart';
+import '../components/common/texts.dart';
 import '../theme/app_colors.dart';
 import 'sample_action_button_screen.dart';
+import 'sample_chips_screen.dart';
+import 'sample_lesson_screen.dart';
 import 'sample_list_items_screen.dart';
+import 'sample_states_screen.dart';
 import 'sample_tab_bar_screen.dart';
+import 'sample_trail_screen.dart';
 
 class SampleScreen extends StatelessWidget {
   const SampleScreen({super.key});
 
   static const String routeName = '/';
 
+  /// O catalogo, em ordem de leitura. Adicionar componente e acrescentar uma
+  /// entrada aqui — a tela nao muda.
+  static const List<_CatalogGroup> _catalog = [
+    _CatalogGroup('Ações', [
+      _CatalogEntry(
+        'Action Button',
+        'Duas variantes, três tamanhos e os estados de carregamento e '
+            'desabilitado',
+        SampleActionButtonScreen.routeName,
+      ),
+    ]),
+    _CatalogGroup('Navegação', [
+      _CatalogEntry(
+        'Tab Bar',
+        'Navegação de quatro abas, com o estado ativo marcado por ícone, cor '
+            'e peso do rótulo',
+        SampleTabBarScreen.routeName,
+      ),
+      _CatalogEntry(
+        'Trail Node',
+        'Nó de trilha vertical com círculo de status e linha conectora',
+        SampleTrailScreen.routeName,
+      ),
+    ]),
+    _CatalogGroup('Conteúdo', [
+      _CatalogEntry(
+        'List Items',
+        'Quatro formatos de linha, com elemento à esquerda, título, subtítulo '
+            'e elemento à direita',
+        SampleListItemsScreen.routeName,
+      ),
+      _CatalogEntry(
+        'Chips e Pills',
+        'Filtro selecionável e rótulo de estado — parecidos por fora, opostos '
+            'por dentro',
+        SampleChipsScreen.routeName,
+      ),
+    ]),
+    _CatalogGroup('Lição', [
+      _CatalogEntry(
+        'Exercício',
+        'Barra de progresso, botão de áudio, alternativas e faixa de '
+            'feedback, montados num exercício que funciona',
+        SampleLessonScreen.routeName,
+      ),
+    ]),
+    _CatalogGroup('Estados', [
+      _CatalogEntry(
+        'Estados e Textos',
+        'Carregando, sem conteúdo, e os três textos que carregam intenção',
+        SampleStatesScreen.routeName,
+      ),
+    ]),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    var index = 0;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -59,40 +127,25 @@ class SampleScreen extends StatelessWidget {
               height: 1.5,
             ),
           ),
-          const SizedBox(height: 32),
-          const _SectionLabel('Componentes'),
-          const SizedBox(height: 12),
-          TekohaListItem(
-            leading: const TekohaListItemBadge.number(1),
-            title: 'Action Button',
-            subtitle: 'Duas variantes, três tamanhos e os estados de '
-                'carregamento e desabilitado',
-            trailing: const Icon(Icons.chevron_right),
-            variant: TekohaListItemVariant.filled,
-            onTap: () => Navigator.of(context)
-                .pushNamed(SampleActionButtonScreen.routeName),
-          ),
-          const SizedBox(height: 12),
-          TekohaListItem(
-            leading: const TekohaListItemBadge.number(2),
-            title: 'Tab Bar',
-            subtitle: 'Navegação de quatro abas, com o estado ativo marcado '
-                'por ícone, cor e peso do rótulo',
-            trailing: const Icon(Icons.chevron_right),
-            variant: TekohaListItemVariant.filled,
-            onTap: () =>
-                Navigator.of(context).pushNamed(SampleTabBarScreen.routeName),
-          ),
-          const SizedBox(height: 12),
-          TekohaListItem(
-            leading: const TekohaListItemBadge.number(3),
-            title: 'List Items',
-            subtitle: 'Quatro formatos de linha, com elemento à esquerda, '
-                'título, subtítulo e elemento à direita',
-            trailing: const Icon(Icons.chevron_right),
-            variant: TekohaListItemVariant.filled,
-            onTap: () =>
-                Navigator.of(context).pushNamed(SampleListItemsScreen.routeName),
+          for (final group in _catalog) ...[
+            const SizedBox(height: 32),
+            TekohaSectionLabel(group.title),
+            const SizedBox(height: 12),
+            for (final entry in group.entries) ...[
+              TekohaListItem(
+                leading: TekohaListItemBadge.number(++index),
+                title: entry.title,
+                subtitle: entry.description,
+                trailing: const Icon(Icons.chevron_right),
+                variant: TekohaListItemVariant.filled,
+                onTap: () => Navigator.of(context).pushNamed(entry.route),
+              ),
+              const SizedBox(height: 12),
+            ],
+          ],
+          const SizedBox(height: 24),
+          const TekohaPurposeText(
+            'Cada palavra que você pratica é uma palavra que continua viva.',
           ),
         ],
       ),
@@ -100,22 +153,19 @@ class SampleScreen extends StatelessWidget {
   }
 }
 
-/// Rotulo de bloco: menor, peso medio, cor secundaria. Sinaliza o grupo sem
-/// competir com o conteudo.
-class _SectionLabel extends StatelessWidget {
-  final String text;
+/// Um grupo do catalogo — os componentes que compartilham um papel.
+class _CatalogGroup {
+  final String title;
+  final List<_CatalogEntry> entries;
 
-  const _SectionLabel(this.text);
+  const _CatalogGroup(this.title, this.entries);
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: AppColors.textSecondary,
-      ),
-    );
-  }
+/// Uma linha do catalogo.
+class _CatalogEntry {
+  final String title;
+  final String description;
+  final String route;
+
+  const _CatalogEntry(this.title, this.description, this.route);
 }
