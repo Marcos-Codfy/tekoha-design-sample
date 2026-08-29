@@ -1,16 +1,16 @@
 // lib/pages/sample_screen.dart
 //
-// Tela inicial do design system: o indice dos componentes. Cada cartao leva a
+// Tela inicial do design system: o indice dos componentes. Cada linha leva a
 // tela de demonstracao do seu componente.
 //
-// O cartao abaixo e um widget privado de proposito. Na proxima fase ele da
-// lugar ao componente ListItems, que e justamente a linha de lista com titulo,
-// subtitulo e elemento a direita — a estrutura que estes cartoes ja usam.
+// As linhas do indice sao o proprio TekohaListItem. O catalogo consome o que
+// documenta — se o componente quebrar, a primeira tela do aplicativo quebra
+// junto, e ninguem descobre tarde.
 
 import 'package:flutter/material.dart';
 
+import '../components/common/list_items.dart';
 import '../theme/app_colors.dart';
-import '../theme/app_theme.dart';
 import 'sample_action_button_screen.dart';
 import 'sample_tab_bar_screen.dart';
 
@@ -61,30 +61,38 @@ class SampleScreen extends StatelessWidget {
           const SizedBox(height: 32),
           const _SectionLabel('Componentes'),
           const SizedBox(height: 12),
-          _ComponentCard(
-            index: 1,
+          TekohaListItem(
+            leading: const TekohaListItemBadge.number(1),
             title: 'Action Button',
-            description: 'Botão de ação em duas variantes, três tamanhos e '
-                'os estados de carregamento e desabilitado',
+            subtitle: 'Duas variantes, três tamanhos e os estados de '
+                'carregamento e desabilitado',
+            trailing: const Icon(Icons.chevron_right),
+            variant: TekohaListItemVariant.filled,
             onTap: () => Navigator.of(context)
                 .pushNamed(SampleActionButtonScreen.routeName),
           ),
           const SizedBox(height: 12),
-          _ComponentCard(
-            index: 2,
+          TekohaListItem(
+            leading: const TekohaListItemBadge.number(2),
             title: 'Tab Bar',
-            description: 'Barra de navegação de quatro abas, com estado ativo '
-                'marcado por ícone, cor e peso do rótulo',
+            subtitle: 'Navegação de quatro abas, com o estado ativo marcado '
+                'por ícone, cor e peso do rótulo',
+            trailing: const Icon(Icons.chevron_right),
+            variant: TekohaListItemVariant.filled,
             onTap: () =>
                 Navigator.of(context).pushNamed(SampleTabBarScreen.routeName),
           ),
           const SizedBox(height: 12),
-          const _ComponentCard(
-            index: 3,
+          const TekohaListItem(
+            leading: TekohaListItemBadge.number(
+              3,
+              foreground: AppColors.textSecondary,
+            ),
             title: 'List Items',
-            description: 'Linha de lista com título, subtítulo e elemento à '
+            subtitle: 'Linha de lista com título, subtítulo e elemento à '
                 'direita',
-            hint: 'Próxima etapa',
+            trailing: Text('Próxima etapa'),
+            variant: TekohaListItemVariant.muted,
           ),
         ],
       ),
@@ -107,116 +115,6 @@ class _SectionLabel extends StatelessWidget {
         fontSize: 14,
         fontWeight: FontWeight.w600,
         color: AppColors.textSecondary,
-      ),
-    );
-  }
-}
-
-/// Cartao de um componente do catalogo. Sem [onTap] ele fica em estado
-/// bloqueado, com a dica no lugar da seta — o mesmo tratamento que o
-/// aplicativo real da aos modulos ainda travados: visivel, nunca escondido.
-class _ComponentCard extends StatelessWidget {
-  final int index;
-  final String title;
-  final String description;
-  final VoidCallback? onTap;
-  final String? hint;
-
-  const _ComponentCard({
-    required this.index,
-    required this.title,
-    required this.description,
-    this.onTap,
-    this.hint,
-  });
-
-  bool get _isLocked => onTap == null;
-
-  @override
-  Widget build(BuildContext context) {
-    final foreground =
-        _isLocked ? AppColors.textSecondary : AppColors.textOnPrimary;
-
-    return Material(
-      color: _isLocked ? AppColors.caulim : AppColors.primary,
-      borderRadius: BorderRadius.circular(AppTheme.cardRadius),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppTheme.cardRadius),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            children: [
-              _IndexBadge(index: index, isLocked: _isLocked),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: foreground,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      description,
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.4,
-                        color: foreground.withValues(alpha: 0.9),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              if (_isLocked)
-                Text(
-                  hint ?? '',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
-                  ),
-                )
-              else
-                Icon(Icons.chevron_right, color: foreground),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Numero da ordem do componente, dentro de um circulo.
-class _IndexBadge extends StatelessWidget {
-  final int index;
-  final bool isLocked;
-
-  const _IndexBadge({required this.index, required this.isLocked});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      width: 44,
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: AppColors.surface,
-        shape: BoxShape.circle,
-      ),
-      child: Text(
-        '$index',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: isLocked ? AppColors.textSecondary : AppColors.primary,
-        ),
       ),
     );
   }
