@@ -1,7 +1,5 @@
 // lib/components/common/chip.dart
 //
-// COMPONENTES: as duas peculas em formato de pilula do design system.
-//
 // Elas parecem iguais e fazem coisas opostas, entao sao classes separadas de
 // proposito:
 //   - [TekohaChip] e CONTROLE — o usuario toca para filtrar. Tem estado
@@ -97,7 +95,7 @@ class TekohaChip extends StatelessWidget {
 
 /// Tom semantico de uma [TekohaPill].
 enum TekohaPillTone {
-  /// Urucum suave. O tom da marca: XP ganho, modo de demonstracao.
+  ///  XP ganho, modo de demonstracao.
   primary,
 
   /// Cinza. Informacao de contexto que nao e conquista nem alerta —

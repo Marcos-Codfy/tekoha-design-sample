@@ -4,12 +4,10 @@
 //
 // E o unico elemento grande do aplicativo que NAO e urucum. A cor rio (azul
 // Amazonas) marca "som" como uma familia propria — o urucum e acao da marca, o
-// rio e fluxo sonoro. Num aplicativo cuja pedagogia parte do ouvido, o botao de
-// ouvir precisa ter identidade propria.
+// rio e fluxo sonoro.
 //
 // Enquanto [isPlaying] e verdadeiro o circulo pulsa. O pulso e feedback de
-// processo em andamento: sem ele, um audio curto tocando em silencio parece um
-// toque que nao registrou.
+// processo em andamento
 
 import 'package:flutter/material.dart';
 
@@ -62,7 +60,7 @@ class TekohaPlayButton extends StatelessWidget {
 /// Pulso continuo entre 1.0 e 1.08 enquanto [active].
 ///
 /// Fica privado porque so faz sentido acoplado a um elemento que representa
-/// processo em andamento. Exposto, viraria decoracao.
+/// processo em andamento.
 class _Pulse extends StatefulWidget {
   final bool active;
   final Widget child;
@@ -104,8 +102,7 @@ class _PulseState extends State<_Pulse> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    // Sem isto o controlador continua rodando depois da tela sair, e o
-    // aplicativo vaza um ticker por visita.
+    // Sem isto o controlador continua rodando depois da tela sair,
     _controller.dispose();
     super.dispose();
   }

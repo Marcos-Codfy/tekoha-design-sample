@@ -3,7 +3,7 @@
 // COMPONENTES: as duas caixas de mensagem do design system.
 //
 //   - [TekohaBanner] comunica o RESULTADO de uma acao do usuario — acertou,
-//     errou, falhou ao entrar. Tem tom semantico e pode carregar uma acao.
+//     errou, falhou ao entrar.
 //   - [TekohaNoteCard] traz conteudo COLATERAL — a curiosidade cultural, a
 //     nota de pronuncia. Nao e consequencia de nada que o usuario fez.
 //

@@ -70,8 +70,6 @@ class TekohaTabBar extends StatelessWidget {
       activeIcon: Icons.menu_book,
     ),
     TekohaTabItem(
-      // diversity_3 simboliza povo e comunidade — mais semantico para
-      // "Cultura" do que o icone de livro.
       label: 'Cultura',
       icon: Icons.diversity_3_outlined,
       activeIcon: Icons.diversity_3,

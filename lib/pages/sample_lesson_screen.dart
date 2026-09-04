@@ -92,7 +92,7 @@ class _SampleLessonScreenState extends State<SampleLessonScreen> {
                 'falta em vez do que já passou.',
             children: [
               const SampleSpec(
-                code: 'value: 0.0 — note que a barra não está vazia',
+                code: 'Note que a barra não está vazia',
                 child: TekohaProgressBar(
                   value: 0,
                   label: 'Exercício 1 de 8',
@@ -138,8 +138,8 @@ class _SampleLessonScreenState extends State<SampleLessonScreen> {
           const SampleSection(
             title: 'Alternativas',
             note: 'No máximo quatro por exercício: o tempo de decisão cresce '
-                'com o número de opções. A borda engrossa no estado '
-                'respondido, então o resultado se percebe antes da cor.',
+                'com o número de opções. A borda engrossa no estado. '
+                '',
             children: [
               SampleSpec(
                 code: 'state: idle',

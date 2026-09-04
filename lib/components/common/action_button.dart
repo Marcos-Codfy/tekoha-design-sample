@@ -1,10 +1,8 @@
-// lib/components/common/action_button.dart
-//
 // COMPONENTE: botao de acao do design system do Tekoha.
 //
 // Unifica num unico widget os tres botoes que o aplicativo real mantinha
-// separados (primario, secundario e o spinner de carregamento). Uma API so,
-// com variantes, evita a duplicacao de `ElevatedButton.icon(...)` espalhada
+// separados (primario, secundario e o spinner de carregamento).
+// evita a duplicacao de `ElevatedButton.icon(...)` espalhada
 // pelas telas.
 //
 // USO:
@@ -23,7 +21,6 @@ import '../../theme/app_theme.dart';
 
 /// Peso visual do botao na tela.
 enum ActionButtonVariant {
-  /// Preenchido em urucum. A acao mais importante do contexto.
   primary,
 
   /// Outline urucum, fundo transparente. Acoes alternativas.

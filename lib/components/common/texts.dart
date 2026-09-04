@@ -8,7 +8,7 @@
 // existe para dar sentido a acao, e nao vai trocá-la por uma dica de uso.
 //
 // O ganho pratico: mudar o estilo de todos os rotulos de secao do aplicativo e
-// editar um arquivo, e nao cacar `fontSize: 14, fontWeight: w600` em oito
+// editar um arquivo, e nao colocar `fontSize: 14, fontWeight: w600` em oito
 // telas.
 
 import 'package:flutter/material.dart';
@@ -37,15 +37,12 @@ class TekohaSectionLabel extends StatelessWidget {
   }
 }
 
-/// Frase de proposito: liga a acao do usuario a razao de ser do aplicativo
+
 /// ("Cada palavra que você pratica é uma palavra que continua viva").
-///
 /// Discreta de proposito — cinza e em italico. Ela nao disputa com o conteudo;
-/// aparece no fim de um bloco, quando o usuario ja fez o que tinha que fazer.
 class TekohaPurposeText extends StatelessWidget {
   final String text;
   final TextAlign align;
-
   /// Desligue o italico quando o texto ja estiver dentro de um bloco em
   /// italico, para nao criar enfase dupla.
   final bool italic;

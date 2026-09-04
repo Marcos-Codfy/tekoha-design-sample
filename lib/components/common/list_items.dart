@@ -33,7 +33,6 @@ enum TekohaListItemVariant {
   outlined,
 
   /// Cartao preenchido em urucum. Reservado para a lista principal da tela —
-  /// mais de uma lista preenchida por tela derruba a hierarquia.
   filled,
 
   /// Cartao cinza, apagado. Sinaliza item indisponivel sem escondê-lo: uma

@@ -15,10 +15,9 @@ import '../../theme/app_colors.dart';
 /// Indicador de carregamento na cor da marca.
 ///
 /// Existe para eliminar o `CircularProgressIndicator(color: AppColors.primary)`
-/// repetido em toda tela com estado de espera — que e exatamente o lugar onde
-/// alguem esquece a cor e o spinner sai azul do Material.
+/// repetido em toda tela com estado de espera
 class TekohaLoader extends StatelessWidget {
-  /// Ja vem centralizado, que e o uso da maioria das telas. Passe `false` para
+  /// Ja vem centralizado. Passe `false` para
   /// posicionar por conta propria.
   final bool centered;
 

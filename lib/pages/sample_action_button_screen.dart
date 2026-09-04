@@ -2,10 +2,6 @@
 //
 // Tela de demonstracao do componente ActionButton.
 //
-// NOTA DE DESIGN: o proprio design system prega "um botao primario por tela"
-// (Lei de Hick). Esta tela quebra a regra de proposito — ela existe para
-// exibir o catalogo completo de variantes lado a lado. Telas de produto devem
-// seguir a regra.
 
 import 'package:flutter/material.dart';
 
@@ -40,8 +36,7 @@ class SampleActionButtonScreen extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
           const SampleIntro(
-            'Botão de ação do Tekohá. Uma API única com variantes, no lugar '
-            'de repetir ElevatedButton em cada tela.',
+            'Botão de ação do Tekohá com suas Variantes.',
           ),
           SampleSection(
             title: 'Variantes',

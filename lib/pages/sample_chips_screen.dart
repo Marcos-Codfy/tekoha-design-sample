@@ -42,7 +42,7 @@ class _SampleChipsScreenState extends State<SampleChipsScreen> {
           SampleSection(
             title: 'Chip de categoria',
             note: 'Filtro selecionável. O item ativo ganha fundo cheio e um '
-                'visto — a seleção nunca depende só da cor.',
+                'visto.',
             children: [
               SampleSpec(
                 code: 'TekohaChip(selected: ..., onTap: ...)',
@@ -113,7 +113,7 @@ class _SampleChipsScreenState extends State<SampleChipsScreen> {
           ),
           const SizedBox(height: 32),
           const TekohaPurposeText(
-            'Cada palavra que você pratica é uma palavra que continua viva.',
+            '',
           ),
         ],
       ),

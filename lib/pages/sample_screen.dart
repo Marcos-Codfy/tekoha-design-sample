@@ -119,8 +119,7 @@ class SampleScreen extends StatelessWidget {
           const SizedBox(height: 12),
           const Text(
             'Os componentes reutilizáveis do aplicativo Tekohá, cada um com '
-            'sua tela de demonstração. Um lugar só para ver, comparar e '
-            'decidir qual usar.',
+            'sua tela de demonstração.',
             style: TextStyle(
               fontSize: 15,
               color: AppColors.textSecondary,
