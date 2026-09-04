@@ -1,4 +1,4 @@
-// lib/pages/sample_screen.dart
+// lib/screens/sample_screen.dart
 //
 // Tela inicial do design system: o indice dos componentes.
 //
@@ -15,21 +15,13 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/list_items.dart';
-import '../components/common/texts.dart';
-import '../theme/app_colors.dart';
-import 'sample_action_button_screen.dart';
-import 'sample_chips_screen.dart';
-import 'sample_lesson_screen.dart';
-import 'sample_list_items_screen.dart';
-import 'sample_states_screen.dart';
-import 'sample_tab_bar_screen.dart';
-import 'sample_trail_screen.dart';
+import '../common/routes/app_routes.dart';
+import '../common/theme/app_colors.dart';
+import '../components/list_items.dart';
+import '../components/texts.dart';
 
 class SampleScreen extends StatelessWidget {
   const SampleScreen({super.key});
-
-  static const String routeName = '/';
 
   /// O catalogo, em ordem de leitura. Adicionar componente e acrescentar uma
   /// entrada aqui — a tela nao muda.
@@ -39,7 +31,7 @@ class SampleScreen extends StatelessWidget {
         'Action Button',
         'Duas variantes, três tamanhos e os estados de carregamento e '
             'desabilitado',
-        SampleActionButtonScreen.routeName,
+        AppRoutes.actionButton,
       ),
     ]),
     _CatalogGroup('Navegação', [
@@ -47,12 +39,12 @@ class SampleScreen extends StatelessWidget {
         'Tab Bar',
         'Navegação de quatro abas, com o estado ativo marcado por ícone, cor '
             'e peso do rótulo',
-        SampleTabBarScreen.routeName,
+        AppRoutes.tabBar,
       ),
       _CatalogEntry(
         'Trail Node',
         'Nó de trilha vertical com círculo de status e linha conectora',
-        SampleTrailScreen.routeName,
+        AppRoutes.trail,
       ),
     ]),
     _CatalogGroup('Conteúdo', [
@@ -60,13 +52,13 @@ class SampleScreen extends StatelessWidget {
         'List Items',
         'Quatro formatos de linha, com elemento à esquerda, título, subtítulo '
             'e elemento à direita',
-        SampleListItemsScreen.routeName,
+        AppRoutes.listItems,
       ),
       _CatalogEntry(
         'Chips e Pills',
         'Filtro selecionável e rótulo de estado — parecidos por fora, opostos '
             'por dentro',
-        SampleChipsScreen.routeName,
+        AppRoutes.chips,
       ),
     ]),
     _CatalogGroup('Lição', [
@@ -74,14 +66,14 @@ class SampleScreen extends StatelessWidget {
         'Exercício',
         'Barra de progresso, botão de áudio, alternativas e faixa de '
             'feedback, montados num exercício que funciona',
-        SampleLessonScreen.routeName,
+        AppRoutes.lesson,
       ),
     ]),
     _CatalogGroup('Estados', [
       _CatalogEntry(
         'Estados e Textos',
         'Carregando, sem conteúdo, e os três textos que carregam intenção',
-        SampleStatesScreen.routeName,
+        AppRoutes.states,
       ),
     ]),
   ];

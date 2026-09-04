@@ -1,4 +1,4 @@
-// lib/components/common/list_items.dart
+// lib/components/list_items.dart
 //
 // COMPONENTE: linha de lista do design system do Tekoha.
 //
@@ -23,8 +23,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
 
 /// Formato visual da linha.
 enum TekohaListItemVariant {

@@ -1,4 +1,4 @@
-// lib/components/common/play_button.dart
+// lib/components/play_button.dart
 //
 // COMPONENTE: botao circular de audio.
 //
@@ -11,7 +11,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 class TekohaPlayButton extends StatelessWidget {
   final VoidCallback? onTap;

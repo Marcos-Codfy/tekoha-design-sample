@@ -1,4 +1,4 @@
-// lib/components/common/progress_bar.dart
+// lib/components/progress_bar.dart
 //
 // COMPONENTE: barra de progresso de uma sequencia de passos.
 //
@@ -18,7 +18,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 class TekohaProgressBar extends StatelessWidget {
   /// Progresso real, de 0 a 1.

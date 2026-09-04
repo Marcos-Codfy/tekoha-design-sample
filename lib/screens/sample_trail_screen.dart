@@ -1,4 +1,4 @@
-// lib/pages/sample_trail_screen.dart
+// lib/screens/sample_trail_screen.dart
 //
 // Tela de demonstracao do TekohaTrailNode.
 //
@@ -8,16 +8,14 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/chip.dart';
-import '../components/common/texts.dart';
-import '../components/common/trail_node.dart';
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
+import '../components/chip.dart';
+import '../components/texts.dart';
+import '../components/trail_node.dart';
 import 'sample_section.dart';
 
 class SampleTrailScreen extends StatelessWidget {
   const SampleTrailScreen({super.key});
-
-  static const String routeName = '/trail';
 
   static const _stages = [
     ('Eu, você, ele', '12 exercícios', TekohaTrailNodeState.done),

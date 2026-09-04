@@ -16,8 +16,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
 
 /// Peso visual do botao na tela.
 enum ActionButtonVariant {

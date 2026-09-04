@@ -1,4 +1,4 @@
-// lib/pages/sample_chips_screen.dart
+// lib/screens/sample_chips_screen.dart
 //
 // Tela de demonstracao de TekohaChip e TekohaPill.
 //
@@ -8,15 +8,13 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/chip.dart';
-import '../components/common/texts.dart';
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
+import '../components/chip.dart';
+import '../components/texts.dart';
 import 'sample_section.dart';
 
 class SampleChipsScreen extends StatefulWidget {
   const SampleChipsScreen({super.key});
-
-  static const String routeName = '/chips';
 
   @override
   State<SampleChipsScreen> createState() => _SampleChipsScreenState();

@@ -1,4 +1,4 @@
-// lib/components/common/option_button.dart
+// lib/components/option_button.dart
 //
 // COMPONENTE: alternativa de exercicio.
 //
@@ -13,8 +13,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
 
 /// Situacao da alternativa no momento do desenho.
 enum TekohaOptionState {

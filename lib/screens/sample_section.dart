@@ -1,15 +1,15 @@
-// lib/pages/sample_section.dart
+// lib/screens/sample_section.dart
 //
 // Andaimes de apresentacao das telas de demonstracao: paragrafo de abertura,
 // bloco tematico e legenda de codigo.
 //
 // Nao sao componentes do design system — sao a moldura do catalogo. Ficam em
-// `pages/` de proposito: `components/common/` guarda so o que uma tela de
-// produto real usaria.
+// `screens/` de proposito: `components/` guarda so o que uma tela de produto
+// real usaria.
 
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 /// Paragrafo de abertura, logo abaixo da AppBar. Diz em uma frase o que o
 /// componente e e que problema ele resolve.

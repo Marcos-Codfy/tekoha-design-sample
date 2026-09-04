@@ -1,4 +1,4 @@
-// lib/pages/sample_states_screen.dart
+// lib/screens/sample_states_screen.dart
 //
 // Tela de demonstracao dos estados de tela e dos textos com papel.
 //
@@ -9,16 +9,14 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/feedback_state.dart';
-import '../components/common/texts.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
+import '../components/feedback_state.dart';
+import '../components/texts.dart';
 import 'sample_section.dart';
 
 class SampleStatesScreen extends StatelessWidget {
   const SampleStatesScreen({super.key});
-
-  static const String routeName = '/states';
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,16 @@
-// lib/pages/sample_action_button_screen.dart
+// lib/screens/sample_action_button_screen.dart
 //
 // Tela de demonstracao do componente ActionButton.
 //
 
 import 'package:flutter/material.dart';
 
-import '../components/common/action_button.dart';
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
+import '../components/action_button.dart';
 import 'sample_section.dart';
 
 class SampleActionButtonScreen extends StatelessWidget {
   const SampleActionButtonScreen({super.key});
-
-  static const String routeName = '/action-button';
 
   void _showFeedback(BuildContext context, String label) {
     ScaffoldMessenger.of(context)

@@ -1,4 +1,4 @@
-// lib/pages/sample_tab_bar_screen.dart
+// lib/screens/sample_tab_bar_screen.dart
 //
 // Tela de demonstracao do componente TekohaTabBar.
 //
@@ -11,14 +11,12 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/tab_bar.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
+import '../components/tab_bar.dart';
 
 class SampleTabBarScreen extends StatefulWidget {
   const SampleTabBarScreen({super.key});
-
-  static const String routeName = '/tab-bar';
 
   @override
   State<SampleTabBarScreen> createState() => _SampleTabBarScreenState();

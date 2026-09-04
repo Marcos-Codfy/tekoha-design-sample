@@ -1,4 +1,4 @@
-// lib/theme/app_colors.dart
+// lib/common/theme/app_colors.dart
 //
 // Tokens de cor do design system do Tekoha.
 //

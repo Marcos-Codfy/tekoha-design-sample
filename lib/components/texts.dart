@@ -1,4 +1,4 @@
-// lib/components/common/texts.dart
+// lib/components/texts.dart
 //
 // COMPONENTES: os tres textos que carregam intencao, e nao apenas conteudo.
 //
@@ -13,7 +13,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 /// Cabecalho de um grupo de informacao ("Seu progresso", "Componentes").
 ///

@@ -1,4 +1,4 @@
-// lib/pages/sample_list_items_screen.dart
+// lib/screens/sample_list_items_screen.dart
 //
 // Tela de demonstracao do componente TekohaListItem.
 //
@@ -8,14 +8,12 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/list_items.dart';
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
+import '../components/list_items.dart';
 import 'sample_section.dart';
 
 class SampleListItemsScreen extends StatelessWidget {
   const SampleListItemsScreen({super.key});
-
-  static const String routeName = '/list-items';
 
   void _showFeedback(BuildContext context, String label) {
     ScaffoldMessenger.of(context)

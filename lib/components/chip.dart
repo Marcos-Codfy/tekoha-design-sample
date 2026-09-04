@@ -1,4 +1,4 @@
-// lib/components/common/chip.dart
+// lib/components/chip.dart
 //
 // Elas parecem iguais e fazem coisas opostas, entao sao classes separadas de
 // proposito:
@@ -11,7 +11,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 /// Filtro selecionavel. Usado nas categorias da aba Cultura
 /// (Curiosidades · História · Hábitos).

@@ -8,9 +8,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tekoha_design_sample/components/common/banner.dart';
-import 'package:tekoha_design_sample/components/common/option_button.dart';
-import 'package:tekoha_design_sample/components/common/progress_bar.dart';
+import 'package:tekoha_design_sample/components/banner.dart';
+import 'package:tekoha_design_sample/components/option_button.dart';
+import 'package:tekoha_design_sample/components/progress_bar.dart';
 
 void main() {
   Widget host(Widget child) => MaterialApp(home: Scaffold(body: child));

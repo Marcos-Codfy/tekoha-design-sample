@@ -1,4 +1,4 @@
-// lib/components/common/banner.dart
+// lib/components/banner.dart
 //
 // COMPONENTES: as duas caixas de mensagem do design system.
 //
@@ -12,8 +12,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
 
 /// Tom semantico de um [TekohaBanner].
 enum TekohaBannerTone { success, error, info }

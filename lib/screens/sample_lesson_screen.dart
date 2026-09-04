@@ -1,4 +1,4 @@
-// lib/pages/sample_lesson_screen.dart
+// lib/screens/sample_lesson_screen.dart
 //
 // Tela de demonstracao dos componentes de exercicio: barra de progresso, botao
 // de audio, alternativa e faixa de feedback.
@@ -11,20 +11,18 @@
 
 import 'package:flutter/material.dart';
 
-import '../components/common/action_button.dart';
-import '../components/common/banner.dart';
-import '../components/common/chip.dart';
-import '../components/common/option_button.dart';
-import '../components/common/play_button.dart';
-import '../components/common/progress_bar.dart';
-import '../components/common/texts.dart';
-import '../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
+import '../components/action_button.dart';
+import '../components/banner.dart';
+import '../components/chip.dart';
+import '../components/option_button.dart';
+import '../components/play_button.dart';
+import '../components/progress_bar.dart';
+import '../components/texts.dart';
 import 'sample_section.dart';
 
 class SampleLessonScreen extends StatefulWidget {
   const SampleLessonScreen({super.key});
-
-  static const String routeName = '/lesson';
 
   @override
   State<SampleLessonScreen> createState() => _SampleLessonScreenState();

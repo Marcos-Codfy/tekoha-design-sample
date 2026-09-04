@@ -1,4 +1,4 @@
-// lib/components/common/tab_bar.dart
+// lib/components/tab_bar.dart
 //
 // COMPONENTE: barra de navegacao por abas do design system do Tekoha.
 //
@@ -19,7 +19,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 /// Uma aba da [TekohaTabBar].
 class TekohaTabItem {

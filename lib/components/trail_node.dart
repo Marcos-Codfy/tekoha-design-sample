@@ -1,4 +1,4 @@
-// lib/components/common/trail_node.dart
+// lib/components/trail_node.dart
 //
 // COMPONENTE: no de uma trilha vertical de etapas.
 //
@@ -14,8 +14,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_theme.dart';
+import '../common/theme/app_colors.dart';
+import '../common/theme/app_theme.dart';
 
 /// Situacao de uma etapa na trilha.
 enum TekohaTrailNodeState {

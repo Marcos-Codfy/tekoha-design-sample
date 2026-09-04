@@ -1,4 +1,4 @@
-// lib/theme/app_theme.dart
+// lib/common/theme/app_theme.dart
 //
 // Tema global montado a partir dos tokens de [AppColors].
 //

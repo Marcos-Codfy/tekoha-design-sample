@@ -1,4 +1,4 @@
-// lib/components/common/feedback_state.dart
+// lib/components/feedback_state.dart
 //
 // COMPONENTES: as telas que aparecem quando nao ha conteudo para mostrar —
 // carregando, vazio ou com erro.
@@ -10,7 +10,7 @@
 import 'package:flutter/material.dart';
 
 import 'action_button.dart';
-import '../../theme/app_colors.dart';
+import '../common/theme/app_colors.dart';
 
 /// Indicador de carregamento na cor da marca.
 ///

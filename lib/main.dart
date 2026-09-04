@@ -8,15 +8,16 @@
 
 import 'package:flutter/material.dart';
 
-import 'pages/sample_action_button_screen.dart';
-import 'pages/sample_chips_screen.dart';
-import 'pages/sample_lesson_screen.dart';
-import 'pages/sample_list_items_screen.dart';
-import 'pages/sample_screen.dart';
-import 'pages/sample_states_screen.dart';
-import 'pages/sample_tab_bar_screen.dart';
-import 'pages/sample_trail_screen.dart';
-import 'theme/app_theme.dart';
+import 'common/routes/app_routes.dart';
+import 'common/theme/app_theme.dart';
+import 'screens/sample_action_button_screen.dart';
+import 'screens/sample_chips_screen.dart';
+import 'screens/sample_lesson_screen.dart';
+import 'screens/sample_list_items_screen.dart';
+import 'screens/sample_screen.dart';
+import 'screens/sample_states_screen.dart';
+import 'screens/sample_tab_bar_screen.dart';
+import 'screens/sample_trail_screen.dart';
 
 void main() {
   runApp(const TekohaDesignSampleApp());
@@ -31,20 +32,19 @@ class TekohaDesignSampleApp extends StatelessWidget {
       title: 'Tekohá Design System',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      initialRoute: SampleScreen.routeName,
-      // Cada tela declara a propria rota numa constante estatica. A string
-      // fica ao lado da classe que ela endereca, e o compilador confere o
-      // nome — digitar '/tab-bar' a mao compila e falha em execucao.
+      initialRoute: AppRoutes.sample,
+      // As rotas nomeadas vivem em [AppRoutes] — fonte unica da verdade. O
+      // compilador acusa qualquer uso de constante que nao exista la, e nada
+      // depende de digitar '/tab-bar' a mao.
       routes: {
-        SampleScreen.routeName: (_) => const SampleScreen(),
-        SampleActionButtonScreen.routeName: (_) =>
-            const SampleActionButtonScreen(),
-        SampleTabBarScreen.routeName: (_) => const SampleTabBarScreen(),
-        SampleListItemsScreen.routeName: (_) => const SampleListItemsScreen(),
-        SampleChipsScreen.routeName: (_) => const SampleChipsScreen(),
-        SampleLessonScreen.routeName: (_) => const SampleLessonScreen(),
-        SampleTrailScreen.routeName: (_) => const SampleTrailScreen(),
-        SampleStatesScreen.routeName: (_) => const SampleStatesScreen(),
+        AppRoutes.sample: (_) => const SampleScreen(),
+        AppRoutes.actionButton: (_) => const SampleActionButtonScreen(),
+        AppRoutes.tabBar: (_) => const SampleTabBarScreen(),
+        AppRoutes.listItems: (_) => const SampleListItemsScreen(),
+        AppRoutes.chips: (_) => const SampleChipsScreen(),
+        AppRoutes.lesson: (_) => const SampleLessonScreen(),
+        AppRoutes.trail: (_) => const SampleTrailScreen(),
+        AppRoutes.states: (_) => const SampleStatesScreen(),
       },
     );
   }

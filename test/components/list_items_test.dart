@@ -6,8 +6,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tekoha_design_sample/components/common/list_items.dart';
-import 'package:tekoha_design_sample/theme/app_colors.dart';
+import 'package:tekoha_design_sample/common/theme/app_colors.dart';
+import 'package:tekoha_design_sample/components/list_items.dart';
 
 void main() {
   Widget host(Widget child) => MaterialApp(home: Scaffold(body: child));
